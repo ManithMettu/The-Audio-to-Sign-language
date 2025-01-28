@@ -15,5 +15,6 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'A2SL.settings')
 
 application = get_wsgi_application()
 
+# Get port from environment variable or default to 8000
 port = int(os.getenv('PORT', 8000))
 #manith

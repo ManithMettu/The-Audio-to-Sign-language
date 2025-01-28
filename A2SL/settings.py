@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
+#project
 
 import os
 
@@ -135,3 +136,9 @@ STATICFILES_DIRS = [
 ]
 
 PORT = int(os.getenv('PORT', 8000))
+
+# For production/Render.com
+if 'RENDER' in os.environ:
+    ALLOWED_HOSTS.append('*')
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
