@@ -2,7 +2,9 @@ services:
   - type: web
     name: audio-to-sign-language
     env: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
     startCommand: gunicorn A2SL.wsgi:application --bind 0.0.0.0:$PORT
     envVars:
       - key: PYTHON_VERSION
@@ -11,3 +13,5 @@ services:
         value: 8000
       - key: DJANGO_SETTINGS_MODULE
         value: A2SL.settings
+      - key: RENDER
+        value: "true"
